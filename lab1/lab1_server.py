@@ -10,10 +10,11 @@ CHUNK = 100
 def send_intro_message(conn):
     # TODO: Replace {ONID} with your ONID (mine is lyakhovs)
     #       and {MAJOR} with your major (i.e. CS, ECE, any others?)
-    intro_message = "Hello! Welcome to my ({ONID}) server! I'm majoring in {MAJOR}\n"
+    intro_message = "Hello! Welcome to my (oot, ... ) server! I'm majoring in CS.\n"
 
     # TODO: Send this intro message to the client. Don't forget to encode() it!
     #       hint: use the `conn` handle and `sendall`!
+    conn.sendall(intro_message.encode())
 
 
 ##################################

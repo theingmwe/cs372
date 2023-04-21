@@ -22,6 +22,14 @@ def recv_intro_message(conn):
     #       2. Receive 1 byte and set it to the `data` variable
     #       3. Add `data` to `full_data`
 
+    #Use a loop that keeps going until `data` equals '\n'
+    while data != '\n':
+        #Receive 1 byte and set it to the `data` variable
+        data = conn.recv(1)
+        #Add `data` to `full_data`
+        full_data += data
+
+
     return full_data.decode()
     
 
