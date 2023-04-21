@@ -37,6 +37,14 @@ def receive_long_message(conn):
     #      2. Receive a `CHUNK` of data (see `CHUNK` variable above)
     #      3. Update `bytes_received` and `full_data` variables
 
+    #Keep going until `bytes_received` is less than `data_length`
+    while bytes_received < data_length:
+        #Receive a `CHUNK` of data (see `CHUNK` variable above)
+        data = conn.recv(CHUNK)
+        #Update `bytes_received` and `full_data` variables
+        bytes_received += len(data)
+        full_data += data
+
     return full_data.decode()
 
 
@@ -68,6 +76,7 @@ def main():
             message = receive_long_message(conn)
 
             # TODO: print the received `message` to the screen!
+            print(message)
 
 # Run the `main()` function
 if __name__ == "__main__":
