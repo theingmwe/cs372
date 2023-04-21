@@ -23,7 +23,7 @@ def recv_intro_message(conn):
     #       3. Add `data` to `full_data`
 
     #Use a loop that keeps going until `data` equals '\n'
-    while data != '\n':
+    while data != b'\n':
         #Receive 1 byte and set it to the `data` variable
         data = conn.recv(1)
         #Add `data` to `full_data`
@@ -66,6 +66,7 @@ def main():
         intro = recv_intro_message(conn)
 
         # TODO: print the received message to the screen
+        print(intro)
 
         """
         Part 2: Long Message Exchange Protocol
