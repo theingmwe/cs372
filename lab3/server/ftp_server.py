@@ -86,16 +86,21 @@ async def send_message(writer, message):
     await writer.drain()
 
 
-async def receive_file(reader, filename):
-    file_path = os.path.join("myfiles", filename)
-    with open(file_path, "wb") as file:
-        # Receive the file data in chunks and write to the file
-        while True:
-            data_chunk = await receive_message(reader)
-            if not data_chunk:
-                break
-            file.write(data_chunk.encode())
+# async def receive_file(reader, filename):
+#     file_path = os.path.join("myfiles", filename)
+#     with open(file_path, "wb") as file:
+#         # Receive the file data in chunks and write to the file
+#         while True:
+#             data_chunk = await receive_message(reader)
+#             if not data_chunk:
+#                 break
+#             file.write(data_chunk.encode())
 
+async def receive_file(reader, filename):
+    file = open(filename, "w")
+    file_contents = await receive_message(reader)
+    file.write(file_contents)
+    file.close()
 
 async def send_file(writer, filename):
     file_path = os.path.join("myfiles", filename)
